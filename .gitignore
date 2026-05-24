@@ -56,6 +56,7 @@ Python312/
 .claude/agenticx-platform/
 .claude/github-explored/
 .claude/projects/
+!.claude/projects/C--Users----/memory/
 .claude/plugins/
 .claude/telemetry/
 .claude/file-history/
