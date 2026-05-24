@@ -1,0 +1,19 @@
+# Cloned open-source research repos (re-clone from GitHub when needed)
+research/agent_novel/
+research/AI-Novel-Writing-Assistant/
+research/AI-Reader-V2/
+research/AI_NovelGenerator/
+research/arboris-novel/
+research/inkos/
+research/Long-Novel-GPT/
+research/novel-creator-skill/
+research/novel-writer/
+research/novelWriter/
+research/PlotPilot/
+research/saga/
+research/vale/
+research/WenShape/
+research/write-good/
+
+# Dependencies
+tools/xhs-scraper/node_modules/

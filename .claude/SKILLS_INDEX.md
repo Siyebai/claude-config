@@ -141,11 +141,12 @@
 | `story-long-scan` | 长篇扫榜 (起点/番茄/晋江) |
 | `story-long-analyze` | 拆解爆款长篇: 套路/钩子/爽点 |
 | `story-long-write` | 长篇章节正文生成 |
-| `story-short-scan` | 短篇扫榜 (知乎盐言/七猫) |
+| `story-short-scan` | 短篇扫榜 (知乎盐言/七猫, 支持 MCP 实时数据) |
 | `story-short-analyze` | 短篇拆文分析 |
-| `story-short-write` | 短篇正文生成 |
+| `story-short-write` | 短篇正文生成 (含知乎盐言特化配置) |
 | `story-deslop` | 三遍法去 AI 味 |
-| `story-review` | 综合审稿: 一致性/节奏/爽点密度 |
+| `story-review` | 综合审稿: 一致性/节奏/爽点密度 (zhihu rubric: 35 指标五维加权) |
+| `zhihu-monetization` | 📘 知乎短篇变现管线: 热点→选题→拆文→创作→审查→去AI味→发布 (7 阶段) |
 | `story-cover` | 小说封面生成 |
 | `story-import` | 导入已有小说内容 |
 | `story-init` | 初始化: 类型/基调/视角/读者 |

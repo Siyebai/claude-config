@@ -15,6 +15,8 @@ metadata:
 
 **执行规则：短篇以情绪为目标函数，所有内容为情绪服务。**
 
+**知乎盐言特化**：目标平台为知乎盐言时，写作前加载 `story-review/references/rubrics/zhihu.md`（五维加权：格式结构 1.0 + 叙事技法 1.2 + 情绪工程 1.5 + 市场匹配 1.3 + 质量润色 1.0）。完整管线见 `story-short-scan/references/pipelines/zhihu-monetization.md`。
+
 ---
 
 ## 执行规则

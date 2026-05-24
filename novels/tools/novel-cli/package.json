@@ -1,0 +1,15 @@
+{
+  "name": "@siyebai/novel-cli",
+  "version": "1.0.0",
+  "description": "Novel project scaffolding & management CLI — 小说项目脚手架",
+  "main": "index.js",
+  "bin": {
+    "novel": "./index.js"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": ["novel", "writing", "cli", "scaffold"],
+  "author": "Siyebai",
+  "license": "MIT"
+}
