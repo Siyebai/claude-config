@@ -159,3 +159,39 @@ FAR_ABOVE_PARAMS = {
 2. 如信号太少 → 降低阈值 (6.0→5.0 ATR)
 3. 如信号过多 → 提高阈值或 ADX 过滤
 4. 考虑扩展更多品种的逐品种参数
+
+## 九、v9.1 升级 (2026-05-23)
+
+### config.py
+- `FAR_ABOVE_ADX_MIN`: 15 → 20 (过滤弱趋势噪音)
+- `FAR_BELOW_ADX_MIN`: 15 → 20 (对称)
+- 品种扩展: 10 → 25品种
+- 策略扩展: FarAbove SHORT + FarBelow LONG 双策略
+
+### engine/paper_engine.py — Bug修复
+- **FarBelow TP/SL 对称**: TP=+5%, SL=-3% (原 TP=+3%, SL=-5%, RR=0.6)
+- **每策略仓位限制**: FarAbove=7, FarBelow=7 (原 combined max_pos=14)
+- **防重复开仓**: position创建前检查 `symbol in _global_positions`
+
+### engine/watchdog.py — 引擎启动修复
+- **pythonw.exe → python.exe**: pythonw.exe Win11静默崩溃
+- **启动方式**: subprocess.Popen + python.exe + CREATE_NO_WINDOW
+- **PID 文件**: data/.engine_pid 进程追踪
+
+### 过夜验证 (9小时)
+- 9笔新交易，全部 ADX≥20 信号
+- Capital: $996.50 → $1012.80 (+$16.33, +1.6%)
+- 平仓: 10→19笔 (14W/5L), WR: 50%→74%
+- PF: 0.79→1.77
+- FarBelow 信号首次出现 (ETH/ADA/LTC/SOL)，被 EV 过滤
+
+### 运行状态 (05-23 15:42)
+- Engine PID 348 + Watchdog PID 18004 (双层守护)
+- 7 FarBelow LONG 仓位: BTC, ETH, SOL, DOGE, XRP, DOT, LINK
+- Capital: $1029.16 | PnL: +$29.16 (+2.9%)
+- 28 trades (23W/5L) | WR=82% | PF=2.76
+
+### 待观察
+- FarBelow 需要更大回调触发 (当前弱回调被EV过滤)
+- 进一步 ADX_MIN 调整可考虑 (20→25 如果 PF 持续 <2.0)
+- python.exe 启动方式是否完全消除静默崩溃

@@ -1,64 +1,66 @@
 ---
 name: night-evolution
-description: 夜间自主进化系统：每晚11点后使用本地 Ollama 模型进行自我优化、学习、研究
+description: 夜间自主进化系统 v2.0：六模块全自动执行（记忆维护+自主学习+自主进化+自主优化+健康检查+Git扫描）
 metadata: 
   node_type: memory
   type: project
   originSessionId: 606883ef-c917-486f-bc5c-497626f92169
 ---
 
-# 夜间自主进化系统
+# 夜间自主进化系统 v2.0
 
-**触发**: 每晚 23:00 后，电脑未关机时自动执行
-**模型**: 本地 Ollama (qwen2.5:7b 主力 + llava:7b 多模态 + nomic-embed-text embedding)
-**成本**: 免费，不限流量
+**触发**: 每晚 23:00 后自动执行（持久化 cron）
+**模型**: 本地 Ollama (qwen2.5:7b) 辅助 + Claude 主力
+**模式**: 安静模式，所有产出写文件，不修改运行中服务
 
-## 进化任务清单（按优先级）
+## 六模块
 
-### 1. 知识整理与记忆维护 (每次必做)
-- 读 `memory/MEMORY.md`，检查所有 memory 文件
-- 合并重复记忆，删除过时内容
-- 从 `recent-sessions.md` 提炼模式写入 `patterns.md`
-- 从错误中提取教训写入 `lessons-learned.md`
-- 检查 CLAUDE.md 是否需要更新
+### 1. 记忆系统维护
+- 读 MEMORY.md，逐条检查时效性
+- 合并重复，删除过时/冗余
+- 清理 >7 天未更新的临时记忆
+- ≥3 条变更时更新 MEMORY.md 索引
 
-### 2. Skill 系统优化 (每周)
-- 扫描 `~/.claude/skills/` 目录
-- 统计使用频率，标记低效 skill
-- 检查是否有可合并的相似 skill
-- 更新 SKILLS_INDEX.md
+### 2. 自主学习 (Self-Learning)
+- 读 recent-sessions.md，分析近 3 天会话
+- 识别：反复问题模式、被纠正行为、有效策略
+- 新发现 → lessons-learned.md
+- 有网络时 WebSearch AI/LLM/Agent 最新动态
+- 学习项目相关最佳实践
 
-### 3. 项目代码分析 (空闲时)
-- 分析白夜交易系统：检查代码质量、寻找优化点
-- 分析 Agent Republic：审查架构、性能瓶颈
-- 分析小说创作工作流：优化 pipeline
+### 3. 自主进化 (Self-Evolution)
+- 基于学习发现更新 `~/.claude/rules/`
+- 优化 CLAUDE.md 启动协议和指令
+- 更新 patterns.md
+- 新工作流 → 对应规则文件
+- 原则：具体、可验证，不写空泛内容
 
-### 4. 自主研究 (有网络时)
-- WebSearch 搜索新技术动态
-- 学习当前项目相关的最佳实践
-- 研究 AI/LLM 领域新进展
+### 4. 自主优化 (Self-Optimization)
+- 清理桌面/临时目录可回收空间
+- 检查 Claude Code 配置效率
+- Skills 扫描：标记 stub，统计质量
+- 清理过期 cron 任务
+- 更新本文件版本号
 
 ### 5. 系统健康检查
-- 检查各服务状态（Ollama, Hermes, OpenClaw）
-- 检查磁盘空间
-- 检查 git 仓库状态
+- 端口: Ollama :11434 / Hermes :18789 / OpenClaw :8642 / Agent Republic :18990
+- C 盘空间
+- Git 仓库状态
+
+### 6. 执行收尾
+- 摘要 → night-log.md
+- 待决策事项 → night-pending.md
+- 更新本文件版本号和变更记录
 
 ## 执行协议
 1. 读 memory 系统加载上下文
-2. 选 2-3 个任务执行（优先上次未完成的）
-3. 所有产出写入文件（不依赖会话缓存）
-4. 执行完毕写摘要到 `memory/night-log.md`
-5. 如无任务可做，输出"无事可做"并等待下次触发
+2. 六模块顺序执行（不可跳过 1/5，其余按需调整）
+3. 所有产出写入文件
+4. 发现需用户决策的事项 → night-pending.md
+5. 无事可做时输出 "无任务" 并退出
 
-## 模型使用策略
-- `qwen2.5:7b`: 代码分析、文档生成、逻辑推理
-- `llava:7b`: 图表/截图分析（如有）
-- `nomic-embed-text`: 文本相似度、语义搜索
-- 复杂任务用 ollama MCP tool 调用本地模型
-- 需要高精度判断时仍用 DeepSeek API（尽量少用）
-
-## 夜间模式规则
-- 安静模式：不弹通知、不修改运行中服务
-- 只读优先：先分析再修改
-- 所有变更必须有充分理由
-- 写入前检查文件是否被其他进程占用
+## 禁止事项
+- 修改运行中服务配置
+- 删除用户文件（仅清理明确的临时文件）
+- 弹通知/弹窗
+- git commit/push（除非用户明确授权夜间可提交）

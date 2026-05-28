@@ -1,24 +1,20 @@
 - [Memory Rules](memory-rules.md) — 记忆系统运作规则：写入、提炼、冲突检测、反遗忘协议
 - [User Identity](user-identity.md) — 姜出尘/Siyebai，全栈开发者 & AI 智能体架构师
 - [Agent Republic Project](agent-republic-project.md) — 多智能体协作面板 v2.3
-- [Lessons Learned](lessons-learned.md) — 14条错误记录，根因+修复
+- [Lessons Learned](lessons-learned.md) — 20条错误记录，根因+修复
+- [Writing Feedback](writing-feedback.md) — 创作任务的铁律：定向改造 > 字数填充
 - [Patterns](patterns.md) — 反复出现的模式、已验证有效的策略
-- [Recent Sessions](recent-sessions.md) — 05-19/20/21 三日合并摘要（启动协议+双同步+v8.6+39技能）
-- [Writing Skills](writing-skills.md) — 任务→Skill映射速查表
+- [Recent Sessions](recent-sessions.md) — 05-19/20/21 三日合并摘要
 - [Dual Agent Sync](dual-agent-sync.md) — 双 Claude Code 智能体并行：状态同步 + 冲突预防
 - [Baiye Research Findings](baiye-research-findings.md) — v5逐品种优化 + v6 Monte Carlo + v8.6 FarAboveEMA策略
-- [2026-05-21 Daily](2026-05-21.md) — 今日会话完整日志
-- [Skill System](skill-system.md) — 安装记录+三层发现漏斗+维护流程+质量分析 (合并3文件)
-- [Skill System Cleanup 2026-05-22](skill-system-cleanup-2026-05-22.md) — 457→448 skills, ~30 commands 删除, 4 toggle 合并, SKILLS_INDEX 重写
-- [Novel Supreme Engine v6.0](novel-supreme-engine-v6.md) — 小说创作终极引擎 v6.0 ★ CURRENT · 整合夜间进化全部研究产出。源文件: ~/novels/novel-supreme-engine-v6.md (~580行)
-- [Novel Supreme Engine v5.0](novel-supreme-engine-v5.md) — v5.0归档 (已被v6.0取代)
-- [Style Profile Template](style-profile-template.md) — 风格档案模板 (四维参数+语言指纹+500字金样本)
-- [Character Voice Card Template](character-voice-card-template.md) — 角色语音卡模板 (语音指纹+禁用词+非语言交流)
-- [Novel Style Injection System](novel-style-injection-system.md) — 风格注入系统 (9大师档案+场景拆解库+CLI工具链详细参考)
-- [Pre-Writing SOP](pre-writing-sop.md) — 写前引导流详细版 (Phase A-F完整步骤+四类场景指令+五点追踪)
-- [Novel Quality Scoring System](novel-quality-scoring-system.md) — 八维20子维度评分详细锚点 (保留作为评分校准参考)
-- [Novel Craft Master Synthesis](novel-craft-master-synthesis.md) — 15项目技法提取日志 (保留作为来源追溯)
-- [Novel Plot Simulation Engine](novel-plot-simulation-engine.md) — 剧情推演详细版 (保留作为Phase 0-2深度参考)
-- [Novel Supreme Engine v4.0](novel-supreme-engine.md) — v4.0归档 (已被v5.0取代)
-- [Zhihu Monetization Pipeline](zhihu-monetization-pipeline.md) — 知乎短篇变现管线 v1.0: 7阶段 + MCP工具链 + 35指标五维Rubric
-- [Night Evolution](night-evolution.md) — 夜间自主进化系统：23点后用本地Ollama免费模型自我优化/学习/研究
+- [Night Log](night-log.md) — 夜间自主进化执行日志
+- [Skill System](skill-system.md) — 安装记录+三层发现漏斗+维护流程+质量分析
+- **[Novel Creation Galaxy Engine v4.0](novel-creation-galaxy-engine-v4.md)** — ★ CURRENT · 超级创世银河 v4.0 (710行) · 逻辑推演门(动机链+因果链+读者之桥+知乎节奏+三遍迭代) · GitHub: Siyebai/novel-creation-galaxy
+- [Novel Creation Galaxy Engine v3.5](novel-creation-galaxy-engine-v3.md) — ARCHIVED v3.5 (已被 v4.0 取代)
+- **[思夜白默认写作风格](siyebai-default-writing-style.md)** — ★ PRIMARY · 从《骨牌》原始版提取的12维DNA · 口语化叙述·自我修正·时间双层·嗅觉触觉签名 · 九导师降为辅助工具
+- [Novel Creation Galaxy Engine v2.0](novel-creation-galaxy-engine-v2.md) — ARCHIVED v2.0 (已被 v3.1 取代)
+- [Novel Creation Galaxy Engine v1.0](novel-creation-galaxy-engine-v1.md) — ARCHIVED v1.0 (已被 v3.1 取代)
+- [Zhihu Monetization Pipeline](zhihu-monetization-pipeline.md) — 知乎短篇变现管线 v1.0 + 创作方法v4 + 铁律10条
+- [Toutiao Operating System](toutiao-operating-system.md) — 今日头条「夜不悔」算法逻辑+爆款公式+冷启动节奏
+- [Night Evolution](night-evolution.md) — 夜间自主进化系统
+- **[思夜白创作运营全系统 v1](C:\Users\李初尘\OneDrive\桌面\思夜白创作运营全系统_v1.md)** — ★ 总纲：三平台账号矩阵+运营体系+技术栈+战绩+待办

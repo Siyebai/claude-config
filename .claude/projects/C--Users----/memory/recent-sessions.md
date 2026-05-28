@@ -45,3 +45,38 @@ metadata:
 - 夜间进化: Ollama本地模型(4个) + 风格深度矩阵 + 反AI味规则v2.0 + 冷热切换v2.0 + 角色语音工具包
 - 样板: 古言重生摆烂(贤妃选秀怼人) — 风格宪法零违规验证
 - 知乎变现管线 v1.0: 7阶段MCP工具链 + 35指标五维Rubric
+
+## 05-24 — 引擎 v6.0 + 休眠
+
+- 创世银河引擎 v6.0: 10大模块拓扑 + 微服务边界 + 冷热切换v3.0
+- 系统备份: GitHub推送含hooks/self-evolution/sessions/plans/panel配置
+- 低活跃日，主要是版本迭代和git整理
+
+## 05-25 — 夜间进化系统首航 + OpenCovibe深度优化
+
+- **C盘深度清理**: 127G→120G, 释放7GB (Temp/node_modules/缓存/日志)
+- **Claude Code优化**: effortLevel medium→low, 减少思考token显示
+- **OpenCovibe修复**: 文件夹选择弹窗根除 (WebView2 LevelDB直接写入), 思考块抑制
+- **Skills安装**: darwin-skill(自我进化) + caveman(6子技能,65% token节省) + guizang-ppt(HTML演示)
+- **知乎方案**: Playwright持久化浏览器 + 扫码登录就绪
+- Skills总数: 203→210
+
+## 05-26 — 记忆系统深度清理 + 知识合并
+
+- **双记忆路径统一**: 删除 claude-agent-hub 旧路径 (27MB JSONL转录 + 9旧md), 释放34MB→7MB
+- **v9.1合并**: baiye-v9-upgrade.md → 主 baiye-research-findings.md
+- **notes.txt修正**: 记忆路径更新为正确的 C--Users---- 路径
+- **Lessons learned**: +2条 (#17 Tauri配置key, #18 thinking tokens污染)
+- Night-log 05-25/05-26 双日日志完整
+- Agent Republic :18990 仍然 DOWN (需日间排查)
+
+## 05-27 — 知乎运营 + 文章发布尝试
+
+- **知乎互动**: 5个基本互动任务完成 ✅
+- **3篇想法**: 已成功发表（雷军YU7外交营销/佛山一中PPT乱讲大赛/阿里并肩前行奖）✅
+- **文章**: 2671字《佛山一中PPT乱讲大赛》已写好，发布未成功 ⚠️
+  - 根因：知乎专栏编辑器是 React/Draft.js controlled component，CDP 注入 DOM/execCommand/ClipboardEvent/Input.dispatchKeyEvent 均无法更新 React 内部状态，发布按钮永远 disabled，字数永远 0
+  - 结论：React controlled component 从根本上阻止了 CDP 级别的内容注入，需手动粘贴发布或使用 Playwright
+- **签到**: 未找到签到入口 ❌
+- **夜间进化**: 23:07 持久化定时任务已就绪
+- **桌面清理**: 临时文件已删除（node_modules + 22 JS + 截图等）

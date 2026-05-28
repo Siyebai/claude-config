@@ -23,3 +23,7 @@ metadata:
 ### 14. 知识库路径不存在 → novels/ zhihu/ 未验证 → 全部路径实测验证后更新 PERSONA.md
 ### 15. shell grep 误判 YAML 质量 → `description: >` 多行被截断显示为空 → 用 YAML parser 而非文本提取；Claude Code 正确解析所有多行语法
 ### 16. 记忆文件分裂增殖 → 每次系统升级创建独立文档，7个文件互相交叉引用、内容大量重复 → 定期7合1整合；≥5个同主题文件必须触发合并；保留详细参考但不放入主索引
+### 17. 配置 key 名错误（Tauri） → `default_cwd` vs `working_directory`，Rust struct 字段名为准 → 先读源码 models.rs 确认字段名，不猜
+### 18. DeepSeek thinking tokens 污染前端UI → `effortLevel: medium` 产生大量思考块在 OpenCovibe 显示 → `effortLevel: low` 可抑制；thinking 由服务端控制，UI层无法过滤
+### 19. PowerShell→JS 命令行中文编码四重坑 → 30+次迭代才写完一个文件，根因四层：① PowerShell here-string 中 `` ` `` 和 `$` 被解释导致内容残缺 ② `node -e` 内联脚本中文路径被 bash 吞反斜杠 ③ `Set-Content` / `Out-File` 默认写 UTF-8 BOM，Node.js 读入后 BOM 残留导致 `.replace()` 匹配失败 ④ Windows `\r\n` vs Node.js `\n` 换行符不一致 → **铁律**: 命令行传中文永远失败，正确做法是 `[System.IO.File]::WriteAllLines` 写 .js 文件到磁盘 → `node script.js` 执行；文本替换用 "写 old/new 到独立文件 → JS 读文件做 replace" 模式；匹配前先 `JSON.stringify()` 打印目标字符串确认内容；BOM 读取用 `if (content.charCodeAt(0) === 0xFEFF) content = content.slice(1)`；换行符统一 `replace(/\r\n/g, '\n')` 后再操作
+### 20. 小说扩写被批"砌墙" → 用户说"每个段落的字画一样吗?小说是这样做的?"——我把12000字任务理解成了填格子，写60段每段200字统一长度，完全违背了"段落该短则短该长则长节奏靠内容驱动"的基本创作原则 → 正确做法是四项定向改造（角色差异化·反陈词滥调·情绪沉淀点·扩展关键场景）基于内容需求自然增字，而非算法式填充；用户对创作质量的敏感度远高于字数达标
