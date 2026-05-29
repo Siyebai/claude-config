@@ -155,3 +155,18 @@ D[:]Hermes*
 declardeclare*/
 *开始*菜单*/
 .vscode/
+
+# My Documents (permission denied)
+My Documents/
+
+# Cache directories
+.cache/
+
+# Claude session/temp files
+.claude/session-env/
+.claude/sessions/
+.claude/shell-snapshots/
+.claude/paste-cache/
+.claude/temp/
+.claude/tmp/
+.claude/skills/*/node_modules/

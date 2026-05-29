@@ -1,20 +1,25 @@
-- [Memory Rules](memory-rules.md) — 记忆系统运作规则：写入、提炼、冲突检测、反遗忘协议
-- [User Identity](user-identity.md) — 姜出尘/Siyebai，全栈开发者 & AI 智能体架构师
-- [Agent Republic Project](agent-republic-project.md) — 多智能体协作面板 v2.3
-- [Lessons Learned](lessons-learned.md) — 20条错误记录，根因+修复
-- [Writing Feedback](writing-feedback.md) — 创作任务的铁律：定向改造 > 字数填充
-- [Patterns](patterns.md) — 反复出现的模式、已验证有效的策略
-- [Recent Sessions](recent-sessions.md) — 05-19/20/21 三日合并摘要
-- [Dual Agent Sync](dual-agent-sync.md) — 双 Claude Code 智能体并行：状态同步 + 冲突预防
-- [Baiye Research Findings](baiye-research-findings.md) — v5逐品种优化 + v6 Monte Carlo + v8.6 FarAboveEMA策略
-- [Night Log](night-log.md) — 夜间自主进化执行日志
-- [Skill System](skill-system.md) — 安装记录+三层发现漏斗+维护流程+质量分析
-- **[Novel Creation Galaxy Engine v4.0](novel-creation-galaxy-engine-v4.md)** — ★ CURRENT · 超级创世银河 v4.0 (710行) · 逻辑推演门(动机链+因果链+读者之桥+知乎节奏+三遍迭代) · GitHub: Siyebai/novel-creation-galaxy
-- [Novel Creation Galaxy Engine v3.5](novel-creation-galaxy-engine-v3.md) — ARCHIVED v3.5 (已被 v4.0 取代)
-- **[思夜白默认写作风格](siyebai-default-writing-style.md)** — ★ PRIMARY · 从《骨牌》原始版提取的12维DNA · 口语化叙述·自我修正·时间双层·嗅觉触觉签名 · 九导师降为辅助工具
-- [Novel Creation Galaxy Engine v2.0](novel-creation-galaxy-engine-v2.md) — ARCHIVED v2.0 (已被 v3.1 取代)
-- [Novel Creation Galaxy Engine v1.0](novel-creation-galaxy-engine-v1.md) — ARCHIVED v1.0 (已被 v3.1 取代)
-- [Zhihu Monetization Pipeline](zhihu-monetization-pipeline.md) — 知乎短篇变现管线 v1.0 + 创作方法v4 + 铁律10条
-- [Toutiao Operating System](toutiao-operating-system.md) — 今日头条「夜不悔」算法逻辑+爆款公式+冷启动节奏
-- [Night Evolution](night-evolution.md) — 夜间自主进化系统
-- **[思夜白创作运营全系统 v1](C:\Users\李初尘\OneDrive\桌面\思夜白创作运营全系统_v1.md)** — ★ 总纲：三平台账号矩阵+运营体系+技术栈+战绩+待办
+﻿# 记忆索引
+
+> 更新: 2026-05-29 | v3.2 | 12文件 ~120KB
+
+| # | 文件 | 大小 | 说明 |
+|---|------|------|------|
+| 1 | AIP-RFC-合集.md | ~64KB | AIP-1~3 协议规范 |
+| 2 | agent-republic-plan-v4.md | ~38KB | 共和国开发计划v4 |
+| 3 | 系统配置合集.md | ~12KB | 记忆规则+模式+Token优化+技能 |
+| 4 | siyebai-default-writing-style.md | ~12KB | 写作风格+输出反馈(合并) |
+| 5 | night-log.md | ~13KB | 夜不悔开发日志+夜间进化(合并) |
+| 6 | baiye-research-findings.md | ~7KB | 交易研究+平台运营 |
+| 7 | lessons-learned.md | ~4KB | 经验教训 |
+| 8 | zhihu-monetization-pipeline.md | ~3.5KB | 知乎变现 |
+| 9 | toutiao-operating-system.md | ~3KB | 头条运营 |
+| 10 | user-identity.md | ~1.5KB | 用户身份 |
+| 11 | last-session.json | ~0.1KB | 上次会话标记 |
+
+## 优化记录
+
+| 日期 | 操作 | 结果 |
+|------|------|------|
+| 05-29 | night-evolution→night-log合并 + 删除5个重复文件 | 17→12 |
+| 05-29 | writing-feedback→writing-style合并 | 19→17 |
+| 05-28 | AIP-RFC×3合并 + 系统配置×4合并 | 24→19 |
