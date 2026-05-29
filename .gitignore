@@ -26,6 +26,7 @@ Videos/
 # Shell and config
 .bash_history
 .bashrc
+.bash_profile
 .profile
 .gitconfig
 .git-credentials
