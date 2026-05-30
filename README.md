@@ -39,7 +39,10 @@
 │   ├── session-start.ps1   #   启动时清理临时目录
 │   └── session-end.ps1     #   结束时压缩大文件
 ├── commands/           # 内置命令（Claude Code 自带）
-├── docs/               # 系统文档（Codex/Guardian 参考）
+├── docs/               # 🔒 系统文档（禁止删除 — 含新手部署完整教程）
+│   ├── 07-ccswitch-deepseek-full-guide.md  # ⭐ CCSwitch+DeepSeek驱动Codex&ClaudeCode
+│   ├── 06-claude-code-beginner-guide.md    # ⭐ Claude Code新手从零部署
+│   └── ...                                 #   系统架构/Codex安装/排错/守护
 ├── projects/.../memory/# 持久记忆系统（跨会话）
 │   ├── MEMORY.md           #   记忆索引（稳定，无日期行）
 │   ├── user-identity.md    #   用户身份/偏好

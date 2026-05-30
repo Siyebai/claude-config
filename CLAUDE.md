@@ -28,9 +28,15 @@
 - 白夜交易: WorkBuddy/Claw/baiye-trading-system/
 - OpenClaw: D:\openclaw\
 
+## 文档保护
+- `.claude/docs/` 目录禁止删除、禁止精简
+- `07-ccswitch-deepseek-full-guide.md` 永久保留，是最重要的参考资料
+- `06-claude-code-beginner-guide.md` 永久保留，新手部署必需
+
 ## 禁止
 展示Shell输出（除非用户要求）
 冗长解释
 反问确认
 git add -A
 force push main
+删除 .claude/docs/ 目录下的任何文件
