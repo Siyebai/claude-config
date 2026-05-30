@@ -1,90 +1,79 @@
 # Claude Code 配置仓库
 
-姜出尘 (Siyebai) 的 Claude Code 完整配置备份。
+姜出尘 (Siyebai) 的 Claude Code 轻量配置 — 精简至核心，缓存命中率 90%+。
 
-## 目录
+## 目录结构
 
 ```
 .claude/
-├── SKILLS_INDEX.md          # 全技能分类索引 (4-Tier: Daily/Frequent/Domain/Rare)
-├── skills/                  # 448 skills (12个市场来源)
-│   ├── code-reviewer/       #   代码审查 (7 skills)
-│   ├── tdd-workflow/        #   测试驱动开发
-│   ├── agentic-engineering/ #   Agent 工程 (8 skills)
-│   ├── baoyu-*/             #   内容创作套件 (21 skills)
-│   ├── story-*/             #   小说创作 (14 skills)
-│   ├── novel-creator/       #   中文长篇创作引擎
-│   ├── python-*/            #   Python 生态 (8 skills)
-│   ├── azure-*/             #   Azure 云服务 (10 skills)
-│   ├── argocd*/             #   GitOps/K8s (10 skills)
-│   └── ...                  #   300+ 其他 skills
-├── commands/                # 263 commands (28个命名空间)
-│   ├── code-review.md       #   代码审查
-│   ├── dev:*/               #   开发工具 (20 commands)
-│   ├── deploy:*/            #   部署 (8 commands)
-│   ├── security:*/          #   安全 (4 commands)
-│   └── ...                  #   200+ 其他 commands
-├── agents/                  # 89 agents
-│   ├── code-reviewer.md     #   代码审查 agent
-│   ├── tdd-guide.md         #   TDD agent
-│   ├── security-reviewer.md #   安全审查 agent
-│   └── ...                  #   86 其他 agents
-└── rules/                   # 16 规则文件
-    ├── soul.md              #   身份定义
-    ├── user.md              #   用户信息
-    ├── common/              #   通用规则 (coding-style, security, testing)
-    └── python/              #   Python 专项规则
+├── rules/              # 3 核心规则（每次启动自动加载）
+│   ├── craft.md        #   代码工艺：不可变/文件上限/错误处理/安全审查
+│   ├── identity.md     #   身份定义：全栈伙伴·自主推进·最高信任
+│   └── ops.md          #   运维规则：性能/清理/简洁输出
+├── skills/             # 16 核心技能（/命令 或 Skill工具调用）
+│   ├── playwright      #   浏览器自动化/E2E测试
+│   ├── git             #   Git操作
+│   ├── git-workflow    #   Git工作流（分支/PR）
+│   ├── pre-commit      #   提交前检查
+│   ├── code-review     #   代码审查
+│   ├── security-review #   安全审查
+│   ├── context7        #   文档查询
+│   ├── debug           #   调试
+│   ├── verify          #   验证变更
+│   ├── cavecrew        #   极简操作
+│   ├── caveman-commit  #   极简提交
+│   ├── caveman-review  #   极简审查
+│   ├── repomap         #   仓库映射
+│   ├── shellcheck      #   Shell检查
+│   ├── shell-prompt    #   Shell提示
+│   └── tldr            #   快速摘要
+├── agents/             # 7 子代理（Agent工具 subagent_type）
+│   ├── architect.md        #   架构设计
+│   ├── build-error-resolver.md # 构建错误修复
+│   ├── code-explorer.md    #   代码探索
+│   ├── code-reviewer.md    #   代码审查
+│   ├── github-workflow.md  #   Git/PR操作
+│   ├── security-reviewer.md #  安全审查
+│   └── triage.md           #   紧急修复
+├── hooks/              # 会话钩子（自动清理缓存）
+│   ├── session-start.ps1   #   启动时清理临时目录
+│   └── session-end.ps1     #   结束时压缩大文件
+├── commands/           # 内置命令（Claude Code 自带）
+├── docs/               # 系统文档（Codex/Guardian 参考）
+├── projects/.../memory/# 持久记忆系统（跨会话）
+│   ├── MEMORY.md           #   记忆索引（稳定，无日期行）
+│   ├── user-identity.md    #   用户身份/偏好
+│   ├── lessons-learned.md  #   经验教训
+│   └── ...                 #   项目/平台相关记忆
+├── settings.json       # 全局配置（DeepSeek后端/maxTokens=8192/fastMode）
+└── settings.local.json # 本地权限覆盖
 ```
 
-## 使用方式
+## 缓存优化策略
 
-### 1. 克隆配置
-```bash
-git clone https://github.com/Siyebai/claude-config.git ~/.claude-backup
-# 然后软链接或复制需要的部分到 ~/.claude/
-```
+核心原则：**autoload文件保持稳定 → 跨会话缓存命中率最大化**
 
-### 2. 快速查找 Skill
+| 优化点 | 措施 | 效果 |
+|--------|------|------|
+| MEMORY.md | 去日期行，索引静态化 | 消除每次会话的必cache-miss |
+| Skills | 448→16，删除未调用技能 | 技能列表缩减96% |
+| Agents | 89→7，删除冗余子代理 | 代理列表缩减92% |
+| Rules | 16→3，合并重复规则 | 规则加载量缩减81% |
+| 内存文件 | 14→9，清除编码损坏文件 | 向量检索更精准 |
 
-打开 `SKILLS_INDEX.md` 查看完整索引，或按场景查找：
+## 配置要点
 
-| 场景 | Skill |
-|------|-------|
-| 审查代码 | `code-reviewer` agent 或 `/code-review` |
-| 写测试 | `tdd-workflow` skill → `tdd-guide` agent |
-| 提交代码 | `writing-commits` skill |
-| 安全审查 | `security-review` + `security-reviewer` agent |
-| Debug | `systematic-debugging` skill |
-| API 设计 | `api-design` skill |
-| 数据库 | `db-optimize` + `database-reviewer` agent |
-| 写小说 | `story-long-write` + `novel-creator` + `chapter-writing` |
-| 内容创作 | `baoyu-*` 系列 (21 skills) |
-| Azure/K8s | `argocd` + `azure-devops` + `k8s-clusters` |
-
-### 3. 安装到本地
-
-将这些目录复制到 `~/.claude/` 对应位置后，Claude Code 会自动发现所有 skills/commands/agents。
-
-## 统计
-
-| 类型 | 数量 | 说明 |
-|------|------|------|
-| Skills | 448 | 上下文自动触发 |
-| Commands | 263 | `/命令名` 手动触发 |
-| Agents | 89 | Agent 工具 subagent_type 匹配 |
-| Rules | 16 | 行为准则 (身份/安全/代码风格/测试) |
-| 市场来源 | 12 | ECC, superskills, caveman, baoyu, oh-story, story-skills, novel-creator 等 |
+- **后端**: DeepSeek API (api.deepseek.com/anthropic)
+- **模型**: deepseek-v4-pro (主力) / deepseek-v4-flash (子代理)
+- **上下文**: 1M窗口 / 8K输出上限
+- **模式**: fastMode + bypassPermissions + low effort
 
 ## 维护
 
-- **索引**: 更新 `SKILLS_INDEX.md`
-- **安装**: `git pull` 后自动加载
-- **清理**: 定期运行 `skills-audit` 检查冗余
-
-## 最后清理
-
-2026-05-22: 457→448 skills (-9), ~293→263 commands (-30), 4 toggle skills 合并, SKILLS_INDEX 重写
+更新配置后提交：
+```bash
+git add .claude/ && git commit -m "chore: update claude config" && git push
+```
 
 ---
-
-> 维护者: [Siyebai](https://github.com/Siyebai) | 环境: Windows 11 + Git Bash | Claude Code + VS Code 双端
+> 维护者: [Siyebai](https://github.com/Siyebai) | 环境: Windows 11 + Git Bash | 后端: DeepSeek | 轻量·稳定·高缓存命中
