@@ -11,6 +11,7 @@
 | [03-Codex 问题诊断手册](03-codex-troubleshooting.md) | 常见问题 + 根因分析 + 修复步骤 |
 | [04-服务守护系统 v5.1](04-service-guardian-v5.1.md) | Guardian 架构、配置、运维 |
 | [05-协议代理：CCSwitch→codex-relay](05-ccswitch-to-codex-relay.md) | 迁移原因、对比、配置 |
+| [06-Claude Code 新手部署指南](06-claude-code-beginner-guide.md) | Claude Code 从零安装、DeepSeek 对接、VS Code 集成 |
 
 ## 当前运行服务
 
