@@ -172,3 +172,8 @@ My Documents/
 .claude/temp/
 .claude/tmp/
 .claude/skills/*/node_modules/
+
+# Generated scan/report files (project-inspector.mjs)
+project-report.md
+project-scan.json
+repomix-packed-output.md
