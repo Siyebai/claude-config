@@ -1,6 +1,8 @@
 ---
 name: project-vision
 description: 项目审视 — 双模式：默认VTE树形检索 · 显式触发Repomix全量深扫
+triggers: ["项目结构", "审视", "全景", "项目概览", "VTE", "扫描项目"]
+weight: medium
 ---
 
 # Project Vision — 项目审视（双模式）

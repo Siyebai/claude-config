@@ -1,6 +1,8 @@
 ---
 name: debug
 description: Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes
+triggers: ["bug", "报错", "不通过", "失败", "异常", "test fail", "挂了"]
+weight: high
 ---
 
 # Systematic Debugging

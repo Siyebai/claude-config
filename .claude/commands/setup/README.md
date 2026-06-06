@@ -1,18 +1,10 @@
-# Setup Commands
+# 设置命令
 
-This namespace contains commands for setting up various aspects of your development environment and project infrastructure. These commands help establish solid foundations for your projects.
-
-## Available Commands
-
-- **create-database-migrations.md** - Create database migration scripts and schemas
-- **design-database-schema.md** - Design efficient database schemas and relationships
-- **design-rest-api.md** - Design RESTful APIs following best practices
-- **implement-graphql-api.md** - Implement GraphQL APIs with proper schema design
-- **migrate-to-typescript.md** - Migrate JavaScript projects to TypeScript
-- **modernize-deps.md** - Modernize and update project dependencies
-- **setup-development-environment.md** - Set up complete development environments
-- **setup-formatting.md** - Configure code formatting tools and standards
-- **setup-linting.md** - Set up linting rules and code quality tools
-- **setup-monitoring-observability.md** - Implement monitoring and observability solutions
-- **setup-monorepo.md** - Configure monorepo structures and tooling
-- **setup-rate-limiting.md** - Implement rate limiting for APIs and services
+## 可用命令
+- **create-database-migrations.md** — 数据库迁移
+- **design-database-schema.md** — 数据库Schema设计
+- **design-rest-api.md** — RESTful API设计
+- **implement-graphql-api.md** — GraphQL API实现
+- **migrate-to-typescript.md** — JS→TS迁移
+- **setup-development-environment.md** — 开发环境搭建
+- **setup-monitoring-observability.md** — 监控和可观测性

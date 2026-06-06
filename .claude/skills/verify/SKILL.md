@@ -1,6 +1,8 @@
 ---
 name: verify
 description: Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always
+triggers: ["验证", "确认", "检测", "测试", "verify", "check", "完成"]
+weight: high
 ---
 
 # Verification Before Completion

@@ -1,21 +1,15 @@
-# Development Commands
+# 开发命令
 
-This namespace contains commands for daily development tasks, code analysis, and productivity enhancements. These commands help streamline your development workflow.
-
-## Available Commands
-
-- **all-tools.md** - Access comprehensive development tools and utilities in one place
-- **clean-branches.md** - Clean up local and remote Git branches that are no longer needed
-- **cloudflare-worker.md** - Generate production-ready Cloudflare Workers code with best practices, TypeScript, and service integrations
-- **code-review.md** - Perform comprehensive code reviews analyzing quality and best practices
-- **code-to-task.md** - Convert code changes or features into actionable tasks
-- **debug-error.md** - Debug errors with detailed analysis and solution suggestions
-- **directory-deep-dive.md** - Perform deep analysis of directory structures and contents
-- **explain-code.md** - Get detailed explanations of complex code sections
-- **fix-issue.md** - Automatically fix identified issues in your codebase
-- **git-status.md** - Enhanced Git status with additional insights and recommendations
-- **prime.md** - Prime your development environment for optimal performance
-- **refactor-code.md** - Refactor code following best practices and design patterns
-- **rule2hook.md** - Convert natural language project rules into Claude Code hooks automatically (by [zxdxjtu](https://github.com/zxdxjtu/claudecode-rule2hook))
-- **sentient.md** - Advanced AI-powered development assistant with contextual awareness
-- **ultra-think.md** - Deep thinking mode for complex problem solving and architecture decisions
+## 可用命令
+- **build.md** — 特性构建（增量/并行）
+- **clean-branches.md** — 清理合并/过期分支
+- **code-to-task.md** — TODO→Linear任务
+- **debug-error.md** — 系统化调试
+- **directory-deep-dive.md** — 目录分析
+- **explain-code.md** — 代码解释
+- **fix-issue.md** — 自动修复GitHub issues
+- **git-status.md** — 增强git状态
+- **prime.md** — 项目上下文预热
+- **refactor-code.md** — 代码重构
+- **ultra-think.md** — 深度分析模式
+- **watch.md** — 文件监控

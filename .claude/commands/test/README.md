@@ -1,16 +1,8 @@
-# Test Commands
+# 测试命令
 
-This namespace contains commands for testing, quality assurance, and test automation. These commands help ensure code reliability and maintain high test coverage.
+## 可用命令
+- **generate-test-cases.md** — 自动生成测试用例
+- **write-tests.md** — 编写单元/集成测试
 
-## Available Commands
-
-- **add-mutation-testing.md** - Add mutation testing to verify test suite effectiveness
-- **add-property-based-testing.md** - Implement property-based testing for robust test coverage
-- **e2e-setup.md** - Set up end-to-end testing infrastructure and frameworks
-- **generate-test-cases.md** - Automatically generate test cases based on code analysis
-- **setup-comprehensive-testing.md** - Create a comprehensive testing strategy with multiple test types
-- **setup-load-testing.md** - Configure load testing to measure performance under stress
-- **setup-visual-testing.md** - Implement visual regression testing for UI components
-- **test-changelog-automation.md** - Automate changelog generation based on test results
-- **test-coverage.md** - Analyze and improve test coverage across your codebase
-- **write-tests.md** - Generate comprehensive tests following framework conventions
+## 合并说明
+`/test-coverage` 已移至根级别，不再在此命名空间内维护。
