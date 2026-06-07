@@ -1,66 +1,184 @@
 ---
 name: tool-dispatch
-description: 任务分发规则 — 确保接收到任务时调用正确的工具/技能/代理
+description: 完整技能调度系统 — 任务到来时自动匹配并调用正确的工具/技能
 ---
 
-# 工具调度协议
+# 工具调度协议 v3.0（总纲）
 
-## 核心原则
-1. **前置匹配**: 用户任务到来时，先扫描关键词匹配下方规则
-2. **最重优先**: 权重高的匹配优先（紧急 > bug > 安全 > ...）
-3. **一次调度**: 选中后不再切换，除非用户明确要求换
+> 详细索引：`.claude/SKILL-INDEX.md`（265技能全表）
+> 优先级：紧急 > 设计/前端 > 开发/架构 > Git/Shell > 通用
 
-## 任务→工具映射
+---
 
-### 🔴 紧急/生产问题 → triage agent
-**关键词**: `挂了` `502` `崩溃` `紧急` `宕机` `hotfix` `incident` `prod down` `on-fire`
-**调用**: `Agent({subagent_type: "triage", prompt: "<描述>"})`
+## 🔴 紧急问题
 
-### 🐛 Bug/测试失败 → debug skill
-**关键词**: `bug` `报错` `不通过` `失败` `异常` `test fail` `错误` `出错`
-**调用**: `Skill("debug")`
+| 触发词 | 调用 |
+|--------|------|
+| `挂了` `502` `崩溃` `紧急` `宕机` `hotfix` `incident` `prod down` `on-fire` | `triage agent` |
 
-### 🔒 安全相关 → security-review skill
-**关键词**: `安全` `认证` `密钥` `XSS` `SQL注入` `权限` `token` `加密` `OWASP`
-**调用**: `Skill("security-review")`
+## 🐛 Bug/调试
 
-### 📋 代码审查 → review command
-**关键词**: `review` `审查` `review代码` `PR检查` `code review` `检查代码`
-**调用**: 小改动→直接Read/Grep · 大改动→`/review`
+| 触发词 | 调用 |
+|--------|------|
+| `bug` `报错` `不通过` `失败` `异常` `错误` `出错` | `debug` skill |
+| `Agent行为异常` `调试Agent` `introspect` | `agent-introspection-debugging` skill |
 
-### 🏗️ 架构设计 → architect agent
-**关键词**: `架构` `设计` `重构方案` `技术选型` `高可用` `扩展` `系统设计`
-**调用**: `Agent({subagent_type: "architect"})`
+## 🎨 UI/前端/设计 — 自动技能组合
 
-### 🔍 代码探索 → code-explorer agent
-**关键词**: `代码是做什么` `流程` `追踪` `数据流` `explore` `理解代码` `分析`
-**调用**: `Agent({subagent_type: "code-explorer"})`
+| 触发词 | 技能组合 |
+|--------|---------|
+| `做页面` `写UI` `设计` `布局` `前端` `样式` | `design-taste-frontend` + `react-patterns` + `motion-ui` |
+| `高端` `premium` `精品` `奢华` `品牌` | `high-end-visual-design` + `brandkit` |
+| `极简` `简洁` `clean` `modern` | `minimalist-ui` |
+| `动效` `动画` `过渡` `framer` `transition` | `motion-patterns` + `motion-advanced` |
+| `改UI` `翻新` `重设计` `改造页面` | `redesign-existing-projects` + `frontend-a11y` |
+| `审美` `好看` `精致` `品味` | `stitch-design-taste` |
+| `手感` `交互` `UX` `体验` `好用的` | `make-interfaces-feel-better` |
+| `React` `组件` `hooks` `状态` | `react-patterns` + `react-performance` |
+| `无障碍` `a11y` `WCAG` `屏幕阅读器` | `frontend-a11y` |
 
-### 🚀 构建/类型错误 → build-error-resolver agent
-**关键词**: `构建失败` `类型错误` `TypeScript` `编译` `tsc` `build error`
-**调用**: `Agent({subagent_type: "build-error-resolver"})`
+## 🔒 安全
 
-### 🔧 开发任务 → 直接使用工具
-**关键词**: `实现` `添加` `修改` `优化` `重构` `写代码` `开发`
-**调用**: `Read` + `Write`/`Edit` + `Bash` + `Grep` — 直接执行
+| 触发词 | 调用 |
+|--------|------|
+| `安全` `认证` `密钥` `XSS` `SQL注入` `OWASP` `渗透` | `security-review` + `security-scan` |
+| `漏洞` `CVE` `审计` `风险` | `security-bounty-hunter` + `coding-standards` |
 
-### ✅ 验证 → verify skill
-**关键词**: `验证` `确认` `检测` `测试通过` `verify` `check` `确保` `确认完成`
-**调用**: `Skill("verify")`
+## 🏗️ 架构/系统
 
-### 📂 项目审视 → project-vision skill
-**关键词**: `项目结构` `审视` `全景` `项目概览` `VTE` `扫描项目` `目录`
-**调用**: `Skill("project-vision")`
+| 触发词 | 调用 |
+|--------|------|
+| `架构` `重构方案` `技术选型` `高可用` `扩展` `系统设计` | `architect agent` + `architecture-decision-records` |
+| `Agent系统` `Agent架构` `Agent框架` | `agent-architecture-audit` + `autonomous-agent-harness` |
+| `设计系统` `设计Token` `组件库` | `design-system` skill |
+| `API设计` `接口设计` `REST` | `api-design` skill |
 
-### 📊 Git操作 → git skill
-**关键词**: `commit` `push` `rebase` `merge` `分支` `git` `cherry-pick` `bisect`
-**调用**: `Skill("git")`
+## 📋 代码审查
 
-### 📝 Shell命令 → shell skill
-**关键词**: `执行命令` `shell` `终端` `运行` `启动` `命令行` `ps` `kill`
-**调用**: `Skill("shell")`
+| 触发词 | 调用 |
+|--------|------|
+| `review` `审查` `PR` `code review` | 小改动→`Grep/Read` · 大改动→`/review` |
+| `代码质量` `编码规范` `合规` | `coding-standards` skill |
+
+## 🚀 构建/部署
+
+| 触发词 | 调用 |
+|--------|------|
+| `构建失败` `类型错误` `TypeScript` `编译` `tsc` `build error` | `build-error-resolver agent` |
+| `部署` `发布` `CI/CD` `docker` | `deployment-patterns` + `docker-patterns` |
+| `Next.js` `Turbopack` `构建配置` | `nextjs-turbopack` skill |
+
+## 🔍 探索/分析
+
+| 触发词 | 调用 |
+|--------|------|
+| `代码是做什么` `理解代码` `流程` `数据流` `explore` `分析` | `code-explorer agent` |
+| `项目结构` `全景` `项目概览` `扫描项目` `审视` | `project-vision` skill |
+| `接手项目` `代码库` `入职` `入门` | `codebase-onboarding` + `code-tour` |
+
+## 📊 性能/成本
+
+| 触发词 | 调用 |
+|--------|------|
+| `性能优化` `慢` `卡顿` `加载慢` | `react-performance` + `benchmark` |
+| `Token消耗` `成本` `API费用` `省钱` | `cost-tracking` + `token-budget-advisor` |
+| `上下文超长` `context` `token超限` | `strategic-compact` + `context-budget` |
+
+## 🔧 开发任务
+
+| 触发词 | 调用 |
+|--------|------|
+| `实现` `添加` `修改` `优化` `重构` `写代码` `开发` | 直接 `Read/Write/Edit/Bash/Grep` + 相关技能辅助 |
+| `TDD` `测试驱动` `先写测试` | `tdd-workflow` skill |
+| `测试` `E2E` `集成测试` `单元测试` | `e2e-testing` + `browser-qa` |
+
+## ✅ 验证
+
+| 触发词 | 调用 |
+|--------|------|
+| `验证` `确认` `检测` `测试通过` `verify` `check` `确保` | `verify` skill + `verification-loop` |
+
+## 📊 Git
+
+| 触发词 | 调用 |
+|--------|------|
+| `commit` `push` `rebase` `merge` `分支` `git` `cherry-pick` `bisect` | `git` skill |
+
+## 📝 Shell
+
+| 触发词 | 调用 |
+|--------|------|
+| `执行命令` `shell` `终端` `运行` `启动` `命令行` `ps` `kill` | `shell` skill |
+
+## 📄 文档处理
+
+| 触发词 | 调用 |
+|--------|------|
+| `转Markdown` `PDF转` `Word转` `文档转换` | `markitdown <文件> -o <输出>` |
+| `写文档` `更新README` `文档` | `docs:doc-api` / 直接读写 |
+
+---
+
+## 组合调用规则
+
+当任务涉及多个领域时，自动组合相关技能：
+
+```
+"帮我做一个新页面"
+  → design-taste-frontend + react-patterns + motion-ui + coding-standards
+  → 输出: 审美指导 + React最佳实践 + 动效方案 + 代码规范
+
+"审计当前UI并改进"
+  → redesign-existing-projects + frontend-a11y + high-end-visual-design
+  → 输出: 现有代码风格审计 + 无障碍修复 + 视觉升级方案
+
+"安全审查"
+  → security-review + security-scan + coding-standards
+  → 输出: 安全漏洞报告 + 运行时扫描结果 + 编码违规检查
+```
+
+---
+
+## 🎬 视频生成 — HyperFrames
+
+| 触发词 | 调用 |
+|--------|------|
+| `做视频` `生成视频` `宣传片` `渲染` `MP4` | `hyperframes` + `hyperframes-cli` |
+| `视频动效` `GSAP` `动画` `转场` | `gsap` + `animejs` + `css-animations` |
+| `网页转视频` `产品演示` | `website-to-hyperframes` |
+| `Three.js 3D` `3D场景` `WebGL` | `three` + `typegpu` |
+| `Lottie 动画` | `lottie` |
+| `从 Remotion 迁移` | `remotion-to-hyperframes` |
+
+### 使用方式
+
+```bash
+# 技能调用
+hyperframes skill
+
+# 手动 CLI
+npx hyperframes init my-video
+npx hyperframes preview
+npx hyperframes render
+```
+
+---
 
 ## 无匹配时的默认行为
-- 通用开发: 直接 Read/Write/Edit/Bash/Grep
-- 信息查询: WebSearch/WebFetch
-- 复杂多步: Agent/Workflow
+
+```
+通用开发 → Read/Write/Edit/Bash/Grep（直接执行）
+信息查询 → WebSearch/WebFetch
+复杂多步 → Agent/Workflow
+```
+
+---
+
+## 快速参考
+
+```
+技能索引: .claude/SKILL-INDEX.md
+技能目录: ~/.agents/skills/（265个）
+安装方式: npx skills add <github-url>
+测试工具: markitdown（文档转Markdown）
+```
