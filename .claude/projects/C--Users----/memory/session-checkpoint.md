@@ -104,8 +104,35 @@ OpenClaw → D:\openclaw\
 
 ---
 
-## 四、关联记忆
+## 四、当前状态（会话结束）
+
+### 进度总览
+| Phase | 内容 | 状态 |
+|-------|------|------|
+| P1 | 导航重构+经济骨架 | ✅ 已交付 |
+| P2 | 交互性·可玩性 | ✅ 已交付 |
+| P3 | 地基重构 | ✅ 已交付+已commit |
+| P4-1/2/3 | AGENT基础+编队+P1 Hero | 🔄 已提交审核 |
+
+### 存储路径
+| 文件 | 路径 |
+|------|------|
+| 完整设计方案 | agent-hub/codex/docs/v6.1-智能体共和国-完整设计方案.md |
+| 桌面版 | OneDrive\桌面\2026-06-07-智能体共和国-v6.1-完整设计方案.md |
+| 个人记忆 | .claude/projects/C--Users----/memory/ |
+| 技能索引 | .claude/SKILL-INDEX.md |
+| 调度规则 | .claude/rules/tool-dispatch.md |
+| Codex配置 | .codex/config.toml → localhost:11435 |
+| CCSwitch | D:\DevTools\ccswitch\ (:11435) |
+| Portal-v3 | D:\智能体共和国\portal-v3\ (dev分支) |
+
+### 进程健康
+- CCSwitch: ✅ node.exe PID 1354
+- 内存占用: 正常
+- 日志: 大日志已识别待清理（非本项目产生，来自 opencode/Codex/copilot）
+
+### 关联记忆
 - [[agent-republic-design-bible]]
+- [[skill-library]]
 - [[project-audit-lesson]]
-- [[system-diagnosis-methodology]]
 - [[codex-360-fix-2026-06-02]]
