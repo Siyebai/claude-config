@@ -1,118 +1,64 @@
 ---
 name: system-diagnosis-methodology
-description: 系统诊断与重构方法论 — 2026-06-06 全系统修复经验
+description: 系统诊断方法论 — SCOUT协议/异常分类/修复策略/工具决策
 metadata: 
   node_type: memory
   type: feedback
   date: 2026-06-06
-  originSessionId: 516ed4da-1bae-4ba8-823a-06da34d01716
+  originSessionId: 78dc3a1b-a605-40e5-a273-68cf4a9b61ab
 ---
 
-# 系统诊断与重构方法论
+# 系统诊断方法论
 
-## 背景
-2026-06-06 执行系统自优化任务后发现系统异常，进行了一次完整的**系统体检→修复→重构→加固**全流程。
+## SCOUT诊断协议
+1. **多维快查**: 同时查git状态/安全/目录结构/配置 — 不逐文件走
+2. **异常分类**: P0-P2 × 安全/结构/运维，先P0
+3. **根因验证**: `git ls-tree HEAD <file>` 确认HEAD存在，`git diff-tree` 查历史
 
+## 修复优先级
+| 层 | 典型问题 | 修复 |
+|----|---------|------|
+| P0安全 | PAT泄露/凭据明文/NTFS关闭 | 删helper→manager认证，恢复protectntfs |
+| P1结构 | staging污染/技能冗余/命令碎片 | git add精准控制，合并冗余技能，命令标准化 |
+| P2效率 | 大量临时文件/大技能文件 | 清理tmp，压缩SKILL.md至<10KB |
+
+## 工具决策
+- 小任务: Read/Grep/Bash → 直接做
+- 复杂探索: Explore agent（只读，比逐文件快10x）
+- 并行: 多个Agent同时启动
+- 修改: 自己Edit/Write（必须先Read）
+- 审计: code-reviewer / security-reviewer agent
+
+## 关键教训
+- ` D`=工作区删除, `D `=staged删除, ` M`=修改未stage
+- PAT存三处: .git/config + ~/.gitconfig + ~/.git-credentials
+- .gitignore可覆盖hooks文件 → `git add -f`
+- 复杂重构必须走EnterPlanMode先探索
+metadata: 
+  node_type: memory
+  type: feedback
+  priority: highest
+  originSessionId: 78dc3a1b-a605-40e5-a273-68cf4a9b61ab
 ---
 
-## 诊断方法（SCOUT Protocol）
+# 审计方法论
 
-### 1. 多维快查
-同时从四个维度入手，不逐个文件检查：
+**教训**: 2026-06-09 用 Workflow + 6个Agent 做全量代码审计，浪费大量token。
+正确的做法是直接用 **ripgrep (Grep工具) + bash** 扫描。
 
-```yaml
-并行检查:
-  - git状态: status --short, diff HEAD, log --oneline
-  - 安全: .git/config凭据, settings.json密钥, gitignore覆盖
-  - 目录: .claude/全目录扫描, 子目录大小排序
-  - 配置: settings.json, hooks, rules, gitconfig全局
+## 高效审计方式
+```
+ripgrep 扫描全项目   → 几秒，几百token
+Workflow Agent扫全量 → 几分钟，几万token
 ```
 
-**关键心法**: 不读全文，先grep/glob定位异常再深入。Token纪律铁律。
+## 审计标准流程
+1. `find . -name "*.ts" | wc -l` — 先探文件规模
+2. `grep -rn "pattern" --include="*.ts"` — 靶向扫描关键模式
+3. `find -exec wc -l {} +` — 按目录统计行数（不用 xargs）
+4. 只在需要理解深层逻辑时才起 Agent
 
-### 2. 异常分类矩阵
-发现异常后按 **严重度(P0-P2) × 类型(安全/结构/运维)** 分类，优先处理P0。
-
-### 3. 根因判断：悬空删除的真相
-105个文件显示 `D` 状态在 `git diff HEAD` 中，最初以为是 `0f7df965` 提交未完成。验证关键命令：
-```bash
-git ls-tree HEAD .claude/commands/dev/cloudflare-worker.md  # 确认文件确实在HEAD中
-git diff-tree --no-commit-id -r --name-status 0f7df965       # 确认历史提交实际删了哪些
-```
-
-结论: 文件在HEAD中但被从磁盘物理删除，未staging/commit。不是git回滚问题。
-
----
-
-## 修复策略
-
-### 安全修复（P0优先）
-
-| 问题 | 定位方法 | 修复 |
-|------|---------|------|
-| GitHub PAT暴露 | `git config --global --list` 发现明文helper | 删除local config + global config + .git-credentials文件 |
-| 凭据存储不安全 | `store` helper存明文文件 | 切换到 `manager` (Windows Credential Manager) |
-| NTFS保护关闭 | gitconfig中 `protectntfs=false` | sed删除该行（恢复默认true） |
-
-### 结构修复
-1. **staging精确控制**: `git add -A` 会误抓无关文件（zhihu截图等） → 改用逐个 `git add <path>` 精确控制
-2. **force-add**: .gitignore覆盖的文件用 `git add -f` 
-3. **commit粒度**: 一个commit解决一个主题
-
-### 技能重构（8→6）
-合并策略: 读两个SKILL.md → 提取独特内容 → 合并为一个 → 删除冗余
-删除策略: 低价值/玩笑/ECC依赖 → 直接 `rm -rf`
-标准化: 所有SKILL.md添加 `triggers` 和 `weight` 元数据
-
-### 命令重构（55→30）
-- 先读所有命令文件（通过Explore agent批量扫描，不是逐个读）
-- 识别3大冗余组（review pipeline / planning family / test coverage）
-- 合并为新文件，添加 `--tier` / `--strategy` 参数区分模式
-- 删除ECC依赖命令后重写README移除幽灵引用
-
-### 调度加固
-- 创建 `tool-dispatch.md` 作为注入到每个会话的调度规则
-- 不重新造注册系统（Claude Code自动发现文件系统），只加映射规则
-- hooks加固: preExec加CCSwitch健康检查, session-end加时间戳+日志
-
----
-
-## 关键工具使用模式
-
-### Agent（子代理）使用决策
-```
-简单确定 → 直接Read/Grep/Bash
-复杂探索 → Explore agent（只读）
-并行任务 → 多个Agent同时启动
-需要代码修改 → 自己直接Edit/Write
-需要审计验证 → code-reviewer / security-reviewer agent
-```
-
-### Workflow vs Agent 选择
-```
-小任务（1-2步）→ Agent
-中等（3-5步，需判断）→ 自己串行Agent
-大规模并行（10+） → Workflow({script})
-```
-
-### 文件编辑纪律
-- 必须Read后才能Write/Edit
-- 先Read改动的文件的前几行确保路径正确
-- Write覆盖整个文件比Edit多次更可靠
-- Edit失败时用sed/Bash替代
-
----
-
-## 教训
-
-1. **git状态解读**: ` D`=工作区删除但HEAD有, `D `=staged删除, ` M`=修改未stage
-2. **PAT可能存三处**: local .git/config + global ~/.gitconfig + ~/.git-credentials
-3. **.gitignore陷阱**: hooks文件可能被.gitignore的宽泛规则覆盖，需 `git add -f`
-4. **Agent的plan模式**: 复杂系统重构必须走 `EnterPlanMode` 先探索再执行
-5. **Explore agent优于手动grep**: 需要理解多文件关系时，Explorer agent的扫描比逐文件Read快10x
-
----
-
-## 相关记忆
-- [[project-audit-lesson]] — 审计失败教训（扫名不读码/确认偏见）
-- [[project-scan-standard]] — 项目审视默认scout --deep
+## token纪律
+- 审计/统计类任务：bash + ripgrep 直出
+- 设计/讨论类任务：可以直接对话
+- Workflow Agent：只在真正需要并行执行多步骤作时使用
