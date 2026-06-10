@@ -1,20 +1,30 @@
-- [Memory Rules](memory-rules.md) — 记忆系统运作规则：写入、提炼、冲突检测、反遗忘协议
-- [User Identity](user-identity.md) — 姜出尘/Siyebai，全栈开发者 & AI 智能体架构师
-- [Agent Republic Project](agent-republic-project.md) — 多智能体协作面板 v2.3
-- [Lessons Learned](lessons-learned.md) — 20条错误记录，根因+修复
-- [Writing Feedback](writing-feedback.md) — 创作任务的铁律：定向改造 > 字数填充
-- [Patterns](patterns.md) — 反复出现的模式、已验证有效的策略
-- [Recent Sessions](recent-sessions.md) — 05-19/20/21 三日合并摘要
-- [Dual Agent Sync](dual-agent-sync.md) — 双 Claude Code 智能体并行：状态同步 + 冲突预防
-- [Baiye Research Findings](baiye-research-findings.md) — v5逐品种优化 + v6 Monte Carlo + v8.6 FarAboveEMA策略
-- [Night Log](night-log.md) — 夜间自主进化执行日志
-- [Skill System](skill-system.md) — 安装记录+三层发现漏斗+维护流程+质量分析
-- **[Novel Creation Galaxy Engine v4.0](novel-creation-galaxy-engine-v4.md)** — ★ CURRENT · 超级创世银河 v4.0 (710行) · 逻辑推演门(动机链+因果链+读者之桥+知乎节奏+三遍迭代) · GitHub: Siyebai/novel-creation-galaxy
-- [Novel Creation Galaxy Engine v3.5](novel-creation-galaxy-engine-v3.md) — ARCHIVED v3.5 (已被 v4.0 取代)
-- **[思夜白默认写作风格](siyebai-default-writing-style.md)** — ★ PRIMARY · 从《骨牌》原始版提取的12维DNA · 口语化叙述·自我修正·时间双层·嗅觉触觉签名 · 九导师降为辅助工具
-- [Novel Creation Galaxy Engine v2.0](novel-creation-galaxy-engine-v2.md) — ARCHIVED v2.0 (已被 v3.1 取代)
-- [Novel Creation Galaxy Engine v1.0](novel-creation-galaxy-engine-v1.md) — ARCHIVED v1.0 (已被 v3.1 取代)
-- [Zhihu Monetization Pipeline](zhihu-monetization-pipeline.md) — 知乎短篇变现管线 v1.0 + 创作方法v4 + 铁律10条
-- [Toutiao Operating System](toutiao-operating-system.md) — 今日头条「夜不悔」算法逻辑+爆款公式+冷启动节奏
-- [Night Evolution](night-evolution.md) — 夜间自主进化系统
-- **[思夜白创作运营全系统 v1](C:\Users\李初尘\OneDrive\桌面\思夜白创作运营全系统_v1.md)** — ★ 总纲：三平台账号矩阵+运营体系+技术栈+战绩+待办
+# 记忆索引
+
+## 活跃会话
+- [session-checkpoint](session-checkpoint.md) — 2026-06-10 TurboInspector/抗合理化/管理后台
+
+## 最新工作经验
+- 抗合理化表: 嵌入 checks/index.mjs，每次 --quality 自动执行退出验证三检
+- 管理后台: 16面板对标 Mission Control，质量监控直连 TurboInspector
+- engine-bridge 复用 engine-singleton: 消除双实例，所有 API 路由共享引擎
+- @ts-nocheck 181→0: 与夜不悔协同，global.d.ts 全局声明体系
+
+## 项目 & 架构
+- [architecture-audit-2026-06-08](architecture-audit-2026-06-08.md) — D+级审计
+- [codex-independence](codex-independence.md) — Codex配置策略
+- [design-bible-reference](design-bible-reference.md) — 设计方案v6.1
+
+## 方法论 & 经验
+- [system-diagnosis-methodology](system-diagnosis-methodology.md) — SCOUT诊断+审计规范
+- [project-audit-lesson](project-audit-lesson.md) — 审计教训
+
+## 工具 & 基础设施
+- [skill-library](skill-library.md) — 285技能/调度规则
+- [server-info](server-info.md) — 服务器连接
+- [project-scan-and-vision](project-scan-and-vision.md) — 扫描标准v3.0
+
+## 项目快照
+- **P0**: portal-v3 @ D:\智能体共和国\ — `pnpm dev` → :3000
+- **P1**: baiye-trading-system @ D:\WorkBuddy\Claw\
+- **模型**: deepseek-v4-flash (locked) | CCSwitch :11435
+- **GitHub**: Siyebai/agent-republic (待推送)
